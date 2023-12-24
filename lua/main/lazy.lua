@@ -21,6 +21,12 @@ require("lazy").setup({
 
     -- DAP (Debugging)
     { 'mfussenegger/nvim-dap' },
+    -- JS Debugging
+    {
+    	'microsoft/vscode-js-debug',
+    	build = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out && cp -R dist/* out/'
+    },
+    { 'mxsdev/nvim-dap-vscode-js' },
 
     -- LSP Section
     {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
@@ -30,4 +36,8 @@ require("lazy").setup({
     {'hrsh7th/cmp-nvim-lsp'},
     {'hrsh7th/nvim-cmp'},
     {'L3MON4D3/LuaSnip'},
+}, {
+	git = {
+		timeout = 300,
+	},
 })

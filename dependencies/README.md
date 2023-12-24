@@ -1,2 +1,1 @@
 - ripgrep
-- js DAP adapter
