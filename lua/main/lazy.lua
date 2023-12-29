@@ -13,11 +13,23 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.5',
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { 
+    	'nvim-treesitter/nvim-treesitter', 
+    	dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+    	build = ":TSUpdate",
+    },
+
+    -- Surround Text Selections
+    {
+    	'kylechui/nvim-surround',
+    	version = '*',
+    	event = 'VeryLazy',
+    },
 
     -- DAP (Debugging)
     { 'mfussenegger/nvim-dap' },
