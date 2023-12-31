@@ -19,6 +19,8 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
   textobjects = {
+
+  	  -- Beautiful Highlighting and ASTs
   	  select = {
   	  	  enable = true,
   	  	  lookahead = true,
@@ -51,12 +53,12 @@ require'nvim-treesitter.configs'.setup {
   	  swap = {
           enable = true,
           swap_next = {
-              ["<leader>na"] = "@parameter.inner", -- swap parameters/argument with next
-              ["<leader>nm"] = "@function.outer", -- swap function with next
+              ["<leader>sna"] = "@parameter.inner", -- swap parameters/argument with next
+              ["<leader>snm"] = "@function.outer", -- swap function with next
           },
           swap_previous = {
-              ["<leader>pa"] = "@parameter.inner", -- swap parameters/argument with prev
-              ["<leader>pm"] = "@function.outer", -- swap function with previous
+              ["<leader>spa"] = "@parameter.inner", -- swap parameters/argument with prev
+              ["<leader>spm"] = "@function.outer", -- swap function with previous
           },
   	  },
       move = {
