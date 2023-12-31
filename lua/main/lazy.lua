@@ -17,9 +17,13 @@ require("lazy").setup({
         tag = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+
+    -- Dope Theming
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { 
-    	'nvim-treesitter/nvim-treesitter', 
+
+    -- Beautiful Highlighting and ASTs
+    {
+    	'nvim-treesitter/nvim-treesitter',
     	dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
     	build = ":TSUpdate",
     },
@@ -36,7 +40,7 @@ require("lazy").setup({
     -- JS Debugging
     {
     	'microsoft/vscode-js-debug',
-    	build = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out && cp -R dist/* out/'
+    	build = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out'
     },
     { 'mxsdev/nvim-dap-vscode-js' },
 
