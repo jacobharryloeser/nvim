@@ -35,6 +35,9 @@ require("lazy").setup({
     	event = 'VeryLazy',
     },
 
+    -- Formatter
+    { 'mhartington/formatter.nvim' },
+
     -- DAP (Debugging)
     { 'mfussenegger/nvim-dap' },
     -- JS Debugging
