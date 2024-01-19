@@ -38,6 +38,9 @@ require("lazy").setup({
 	-- Super Git
 	{ "tpope/vim-fugitive" },
 
+	-- Test Plugin
+	{ "vim-test/vim-test" },
+
 	-- Formatter
 	{ "mhartington/formatter.nvim" },
 
