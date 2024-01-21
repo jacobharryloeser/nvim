@@ -9,6 +9,22 @@ vim.keymap.set("n", "<leader>n", ":bn<CR>")
 vim.keymap.set("n", "<leader>p", ":bp<CR>")
 
 local function scratch()
+	local output = {}
+
+	local function write_to_scratch(_, data, _)
+		for k, v in pairs(data) do
+			table.insert(output, v)
+		end
+	end
+
+	local function flush()
+		local buf = vim.api.nvim_create_buf(true, true)
+		vim.api.nvim_buf_set_lines(buf, 0, -1, false, output)
+		local win = vim.api.nvim_get_current_win()
+		vim.cmd("vsplit")
+		vim.api.nvim_win_set_buf(win, buf)
+	end
+
 	vim.ui.input({ prompt = "enter command> ", completion = "command" }, function(input)
 		if input == nil then
 			return
@@ -16,16 +32,7 @@ local function scratch()
 			input = "echo('')"
 		end
 		print("Running your command, so do some push ups and some squats.")
-		local cmd = vim.api.nvim_exec(input, { output = true })
-		local output = {}
-		for line in cmd:gmatch("[^\n]+") do
-			table.insert(output, line)
-		end
-		local buf = vim.api.nvim_create_buf(true, true)
-		vim.api.nvim_buf_set_lines(buf, 0, -1, false, output)
-		local win = vim.api.nvim_get_current_win()
-		vim.cmd("vsplit")
-		vim.api.nvim_win_set_buf(win, buf)
+		vim.fn.jobstart(input, { on_exit = flush, on_stdout = write_to_scratch, on_stderr = write_to_scratch })
 	end)
 end
 
