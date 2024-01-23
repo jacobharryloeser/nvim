@@ -53,6 +53,9 @@ require("lazy").setup({
 	},
 	{ "mxsdev/nvim-dap-vscode-js" },
 
+	-- EXPERIMENTAL - Fountain Plugin for Script Writing
+	{ "kblin/vim-fountain" },
+
 	-- LSP Section
 	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
 	{ "williamboman/mason.nvim" },
