@@ -1,18 +1,17 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Return to Netrw" })
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted line down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted line up" })
 
--- Fast buffer switching
-vim.keymap.set("n", "<leader>n", ":bn<CR>")
-vim.keymap.set("n", "<leader>p", ":bp<CR>")
+vim.keymap.set("n", "<leader>n", ":bn<CR>", { desc = "Next Buffer" })
+vim.keymap.set("n", "<leader>p", ":bp<CR>", { desc = "Prev Buffer" })
 
 local function scratch()
 	local output = {}
 
 	local function write_to_scratch(_, data, _)
-		for k, v in pairs(data) do
+		for _, v in pairs(data) do
 			table.insert(output, v)
 		end
 	end

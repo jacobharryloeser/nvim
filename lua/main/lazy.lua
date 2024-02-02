@@ -28,6 +28,16 @@ require("lazy").setup({
 		build = ":TSUpdate",
 	},
 
+	-- Key Shortcut Reminder
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+	},
+
 	-- Surround Text Selections
 	{
 		"kylechui/nvim-surround",
