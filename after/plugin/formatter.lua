@@ -33,6 +33,10 @@ require("formatter").setup({
 			require("formatter.filetypes.html").prettier("html"),
 		},
 
+		css = {
+			require("formatter.filetypes.html").prettier("css"),
+		},
+
 		json = {
 			require("formatter.filetypes.json").prettier("json"),
 		},
@@ -52,7 +56,7 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 augroup("__formatter__", { clear = true })
 autocmd("BufWritePost", {
-	pattern = { "*.lua", "*.zig", "*.json" },
+	pattern = { "*.lua", "*.zig", "*.json", "*.html", "*.css" },
 	group = "__formatter__",
 	command = ":FormatWrite",
 })
