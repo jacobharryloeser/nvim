@@ -39,6 +39,19 @@ vim.keymap.set("n", "<leader>sc", scratch, { desc = "Command to scratch buffer a
 
 local function live_scratch()
 	local buf = vim.api.nvim_create_buf(true, true)
+	local jobId = nil
+	local augroup = vim.api.nvim_create_augroup
+	local autocmd = vim.api.nvim_create_autocmd
+	augroup("__live_scratch__", { clear = true })
+	autocmd("BufDelete", {
+		buffer = buf,
+		group = "__live_scratch__",
+		callback = function()
+			if jobId ~= nil then
+				vim.fn.jobstop(jobId)
+			end
+		end,
+	})
 
 	local function write_to_scratch(_, data, _)
 		local output = {}
@@ -57,7 +70,7 @@ local function live_scratch()
 			input = "echo('')"
 		end
 		print("Running your command, so do some push ups and some squats.")
-		vim.fn.jobstart(input, { on_stdout = write_to_scratch, on_stderr = write_to_scratch })
+		jobId = vim.fn.jobstart(input, { on_stdout = write_to_scratch, on_stderr = write_to_scratch })
 		vim.cmd("vsplit")
 	end)
 end
