@@ -29,6 +29,20 @@ require("formatter").setup({
 			end,
 		},
 
+		rust = {
+			function()
+				return {
+					exe = "rustfmt",
+					args = { "--edition 2021" },
+					stdin = true,
+				}
+			end,
+		},
+
+		zig = {
+			require("formatter.filetypes.zig"),
+		},
+
 		html = {
 			require("formatter.filetypes.html").prettier("html"),
 		},
@@ -56,7 +70,7 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 augroup("__formatter__", { clear = true })
 autocmd("BufWritePost", {
-	pattern = { "*.lua", "*.zig", "*.json", "*.html", "*.css" },
+	pattern = { "*.lua", "*.zig", "*.rs", "*.json", "*.html", "*.css" },
 	group = "__formatter__",
 	command = ":FormatWrite",
 })
