@@ -18,8 +18,8 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 
-	-- Dope Theming
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+	-- Synthwave Theming
+	{ "lunarvim/synthwave84.nvim", name = "synthwave84", priority = 1000 },
 
 	-- Beautiful Highlighting and ASTs
 	{

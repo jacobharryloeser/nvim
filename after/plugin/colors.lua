@@ -1,7 +1,6 @@
 function ColorMyPencils(color)
-	color = color or "catppuccin"
+	color = color or "synthwave84"
 	vim.cmd.colorscheme(color)
 end
-
 
 ColorMyPencils()
