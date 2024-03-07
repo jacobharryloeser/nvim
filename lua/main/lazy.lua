@@ -19,10 +19,7 @@ require("lazy").setup({
 	},
 
 	-- Synthwave Theming
-	-- { "lunarvim/synthwave84.nvim", name = "synthwave84", priority = 1001 },
-
-	-- Transparent Background
-	{ "xiyaowong/transparent.nvim" },
+	{ "lunarvim/synthwave84.nvim", name = "synthwave84", priority = 1001 },
 
 	-- Beautiful Highlighting and ASTs
 	{
