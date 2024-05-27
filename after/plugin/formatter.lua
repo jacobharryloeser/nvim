@@ -48,11 +48,25 @@ require("formatter").setup({
 		},
 
 		css = {
-			require("formatter.filetypes.html").prettier("css"),
+			require("formatter.filetypes.css").prettier("css"),
 		},
 
 		json = {
 			require("formatter.filetypes.json").prettier("json"),
+		},
+
+		javascript = {
+			function()
+				return {
+					exe = "prettier",
+					args = {
+						"--stdin-filepath",
+						util.escape_path(util.get_current_buffer_file_path()),
+					},
+					stdin = true,
+					try_node_modules = true,
+				}
+			end,
 		},
 
 		-- Use the special "*" filetype for defining formatter configurations on
@@ -70,7 +84,7 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 augroup("__formatter__", { clear = true })
 autocmd("BufWritePost", {
-	pattern = { "*.lua", "*.zig", "*.rs", "*.json", "*.html", "*.css" },
+	pattern = { "*.lua", "*.zig", "*.rs", "*.json", "*.html", "*.css", "*.js" },
 	group = "__formatter__",
 	command = ":FormatWrite",
 })
