@@ -4,6 +4,16 @@ vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+vim.opt.list = true
+local space = "."
+vim.opt.listchars:append({
+	tab = "|-",
+	multispace = space,
+	lead = space,
+	trail = space,
+	nbsp = space,
+})
+
 vim.opt.tabstop = 4
 vim.opt.copyindent = true
 vim.opt.preserveindent = true
@@ -11,7 +21,8 @@ vim.opt.softtabstop = 0
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 
-vim.opt.smartindent = true
+-- Let Tree-sitter do this
+vim.opt.smartindent = false
 
 vim.opt.wrap = false
 
@@ -30,5 +41,5 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 --vim.opt.colorcolumn = "80"
-vim.api.nvim_set_hl(0, "PMenu", { bg = "#000000", blend = 50})
+vim.api.nvim_set_hl(0, "PMenu", { bg = "#000000", blend = 50 })
 vim.g.mapleader = " "
