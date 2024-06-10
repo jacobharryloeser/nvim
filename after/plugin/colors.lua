@@ -5,6 +5,7 @@ function SetTheme()
 
 	highlights.set_highlights(config.glow)
 	vim.cmd.colorscheme("synthwave84")
+	vim.api.nvim_set_hl(0, "@variable", { fg = "#ff2975" })
 	vim.api.nvim_set_hl(0, "Identifier", { fg = "#ff7edb" })
 	vim.api.nvim_set_hl(0, "Whitespace", { fg = "#791e94" })
 end
