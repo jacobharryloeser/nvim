@@ -47,6 +47,14 @@ require("mason-lspconfig").setup({
 	},
 })
 
+local laptop_zls_binary = "/home/jacobharryloeser/Tools/zls/zig-out/bin/zls"
+if vim.fn.filereadable(laptop_zls_binary) then
+	require("lspconfig").zls.setup({
+		-- Compiled a local version of the LSP to make things simpler
+		cmd = { laptop_zls_binary },
+	})
+end
+
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
