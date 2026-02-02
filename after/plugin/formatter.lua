@@ -16,7 +16,7 @@ require("formatter").setup({
 				-- Full specification of configurations is down below and in Vim help
 				-- files
 				return {
-					exe = "stylua",
+					exe = "/home/jacobharryloeser/.config/nvim/dependencies/formatters/stylua",
 					args = {
 						"--search-parent-directories",
 						"--stdin-filepath",
