@@ -18,12 +18,6 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 
-	-- Synthwave Theming
-	{ "lunarvim/synthwave84.nvim", name = "synthwave84", priority = 1001 },
-
-	-- Transparent Background (Not working)
-	-- { "xiyaowong/transparent.nvim" },
-
 	-- Beautiful Highlighting and ASTs
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -53,16 +47,4 @@ require("lazy").setup({
 
 	-- Formatter
 	{ "mhartington/formatter.nvim" },
-
-	-- DAP (Debugging)
-	{ "mfussenegger/nvim-dap" },
-	-- JS Debugging
-	{
-		"microsoft/vscode-js-debug",
-		build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
-	},
-	{ "mxsdev/nvim-dap-vscode-js" },
-
-	-- EXPERIMENTAL - Fountain Plugin for Script Writing
-	{ "kblin/vim-fountain" },
 })
