@@ -14,14 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 
-	-- Beautiful Highlighting and ASTs
 	{
 		"nvim-treesitter/nvim-treesitter",
-		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+		branch = "main",
 		build = ":TSUpdate",
 	},
 
@@ -47,4 +45,9 @@ require("lazy").setup({
 
 	-- Formatter
 	{ "mhartington/formatter.nvim" },
+
+	-- DB
+	{ "tpope/vim-dadbod" },
+	{ "kristijanhusak/vim-dadbod-completion" },
+	{ "kristijanhusak/vim-dadbod-ui" },
 })
