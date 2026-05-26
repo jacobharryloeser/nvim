@@ -9,6 +9,8 @@ vim.api.nvim_set_hl(0, "@keyword.repeat", { fg = "#f38ba8" })
 vim.api.nvim_set_hl(0, "@keyword.conditional", { fg = "#f38ba8" })
 vim.api.nvim_set_hl(0, "@number", { fg = "#cba6f7" })
 vim.api.nvim_set_hl(0, "@string", { fg = "#f9e2af" })
+vim.api.nvim_set_hl(0, "@type", { fg = "#f9e2af" })
+vim.api.nvim_set_hl(0, "@type.definition", { fg = "#f9e2af" })
 
 vim.keymap.set("n", "<C-e>", function()
 	local result = vim.treesitter.get_captures_at_cursor(0)

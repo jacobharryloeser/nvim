@@ -90,3 +90,14 @@ vim.lsp.config["clangd"] = {
 	root_marker = { ".git", ".clangd", "compile_commands.json" },
 }
 vim.lsp.enable("clangd")
+
+vim.opt.completeopt = { "menuone", "noselect", "noinsert", "popup" }
+vim.lsp.config("*", {
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/completion", bufnr) then
+			vim.lsp.completion.enable(true, client.id, bufnr, {
+				autotrigger = true,
+			})
+		end
+	end,
+})
