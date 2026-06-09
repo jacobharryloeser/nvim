@@ -1,5 +1,15 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client ~= nil and client:supports_method("textDocument/completion", ev.buf) then
+			-- Forces the autocomplete list to populate after calling get without a bunch of shitty text insertion
+			vim.cmd([[set completeopt+=menuone,noselect,popup]])
+			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
+			-- holy shit autotrigger sucks, make the list appear this way
+			vim.keymap.set("i", "<c-space>", function()
+				vim.lsp.completion.get()
+			end)
+		end
 		local opts = { buffer = ev.buf, remap = false }
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("keep", opts, { desc = "Go To Definition" }))
 		vim.keymap.set("n", "K", function()
@@ -17,18 +27,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.diagnostic.open_float,
 			vim.tbl_extend("keep", opts, { desc = "Open Float" })
 		)
-		vim.keymap.set(
-			"n",
-			"[d",
-			vim.diagnostic.goto_next,
-			vim.tbl_extend("keep", opts, { desc = "GoTo Next Diagnostic" })
-		)
-		vim.keymap.set(
-			"n",
-			"]d",
-			vim.diagnostic.goto_prev,
-			vim.tbl_extend("keep", opts, { desc = "GoTo Prev Diagnostic" })
-		)
+
+		vim.keymap.set("n", "[d", function()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end, vim.tbl_extend("keep", opts, { desc = "GoTo Next Diagnostic" }))
+
+		vim.keymap.set("n", "]d", function()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end, vim.tbl_extend("keep", opts, { desc = "GoTo Prev Diagnostic" }))
+
 		vim.keymap.set(
 			"n",
 			"<leader>vca",
@@ -87,17 +94,6 @@ vim.lsp.enable("tsserver")
 vim.lsp.config["clangd"] = {
 	cmd = { "clangd" },
 	filetypes = { "c", "cpp" },
-	root_marker = { ".git", ".clangd", "compile_commands.json" },
+	root_markers = { ".git", ".clangd", "compile_commands.json" },
 }
 vim.lsp.enable("clangd")
-
-vim.opt.completeopt = { "menuone", "noselect", "noinsert", "popup" }
-vim.lsp.config("*", {
-	on_attach = function(client, bufnr)
-		if client.supports_method("textDocument/completion", bufnr) then
-			vim.lsp.completion.enable(true, client.id, bufnr, {
-				autotrigger = true,
-			})
-		end
-	end,
-})
